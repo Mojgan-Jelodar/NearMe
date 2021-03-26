@@ -10,9 +10,10 @@ protocol V2PAroundMeProtocol: class {
     var view: P2VAroundMeProtocol? {get set}
     var interactor: P2IAroundMeProtocol? {get set}
     var router: P2RAroundMeProtocol? {get set}
-    func fetch(lat :Double,long : Double)
+    func fetch(lat: Double, long: Double)
+    func showDetail(item: Items)
 }
-final class AroundMePresenter : V2PAroundMeProtocol {
+final class AroundMePresenter: V2PAroundMeProtocol {
     weak var view: P2VAroundMeProtocol?
     var interactor: P2IAroundMeProtocol?
     var router: P2RAroundMeProtocol?
@@ -20,14 +21,18 @@ final class AroundMePresenter : V2PAroundMeProtocol {
         view?.startLoading()
         interactor?.explore(lat: lat, long: long)
     }
+
+    func showDetail(item: Items) {
+
+    }
 }
 
-extension AroundMePresenter : I2PAroundMeProtocol {
+extension AroundMePresenter: I2PAroundMeProtocol {
     func fetched(items: [Items]) {
         view?.stopLoading()
         view?.show(items: items)
     }
-    
+
     func fetched(error: Error) {
         view?.stopLoading()
         view?.show(error: error)

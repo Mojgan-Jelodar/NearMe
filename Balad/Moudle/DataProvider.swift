@@ -6,11 +6,11 @@
 //
 
 import Foundation
-protocol DataProviderDelegate : class {
-    func fetched(items : [Items])
-    func failedFetchBy(error : Error)
+protocol DataProviderDelegate: class {
+    func fetched(items: [Items])
+    func failedFetchBy(error: Error)
 }
-protocol DataProvider : class {
-    var delegate : DataProviderDelegate? { get set}
-    func fetch(lat : Double,long : Double)
+protocol DataProvider: class {
+    var delegate: DataProviderDelegate? { get set}
+    func fetch(lat: Double, long: Double)
 }

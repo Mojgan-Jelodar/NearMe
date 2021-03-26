@@ -13,8 +13,8 @@ struct  UserLocationService {
 
     func venues(lat: Double,
                 long: Double,
-                success :@escaping (Place)->(),
-                failure :@escaping (Error)->()) {
+                success :@escaping (Place) -> Void,
+                failure :@escaping (Error) -> Void) {
         provider.request(VenuesApi.explore(lag: lat, long: long)) { result in
             switch result {
             case .success(let response) :

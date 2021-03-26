@@ -14,8 +14,8 @@ extension Response {
     public func mapObject<T: Codable>(_ type: T.Type, path: String? = nil) throws -> T {
         do {
             return try JSONDecoder().decode(T.self, from: try getJsonData(path))
-        } catch {
-            throw MoyaError.jsonMapping(self)
+        } catch let error {
+            throw error
         }
     }
 
@@ -23,15 +23,14 @@ extension Response {
     public func mapArray<T: Codable>(_ type: T.Type, path: String? = nil) throws -> [T] {
         do {
             return try JSONDecoder().decode([T].self, from: try getJsonData(path))
-        } catch {
-            throw MoyaError.jsonMapping(self)
+        } catch let error {
+            throw error
         }
     }
 
     // MARK: - getJsonData
     private func getJsonData(_ path: String? = nil) throws -> Data {
         do {
-
             var jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
             if let path = path {
 

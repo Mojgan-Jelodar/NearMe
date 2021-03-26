@@ -44,7 +44,8 @@ extension VenuesApi: TargetType {
                                                    //"client_secret" : Api.clientSecret,
                                                    "oauth_token": "AIAPJ3MVNR0FRSU2VLINIR0YJCQM521TZSOB2WW4CJA5YOQC",
                                                    "ll": "\(lat),\(long)",
-                                                   "radius": "2000",
+                                                   "radius": "5000",
+                                                   "limit": 50,
                                                    "v": 20210326], encoding: URLEncoding.queryString)
         }
     }

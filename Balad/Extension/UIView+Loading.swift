@@ -8,9 +8,7 @@
 import UIKit
 extension UIView {
     func lock() {
-        if let _ = viewWithTag(10) {
-            //View is already locked
-        } else {
+        if viewWithTag(10) == nil {
             let lockView = UIView()
             lockView.backgroundColor = UIColor(white: 0.0, alpha: 0.7)
             lockView.tag = 10
@@ -32,9 +30,9 @@ extension UIView {
         if let lockView = viewWithTag(10) {
             UIView.animate(withDuration: 0.2, animations: {
                 lockView.alpha = 0.0
-            }) { _ in
+            }, completion: { _ in
                 lockView.removeFromSuperview()
-            }
+            })
         }
     }
 }

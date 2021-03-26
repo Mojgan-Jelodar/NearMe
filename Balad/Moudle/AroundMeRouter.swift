@@ -11,8 +11,8 @@ protocol P2RAroundMeProtocol: class {
     static func createModule() -> UIViewController
     func showDetail(item: Items)
 }
-final class AroundMeRouter : P2RAroundMeProtocol {
-    weak var presentingVc : UIViewController?
+final class AroundMeRouter: P2RAroundMeProtocol {
+    weak var presentingVc: UIViewController?
     static func createModule() -> UIViewController {
         let vc =  AroundMeVC(nibName: "\(AroundMeVC.self)", bundle: nil)
         let presenter = AroundMePresenter()
@@ -22,12 +22,9 @@ final class AroundMeRouter : P2RAroundMeProtocol {
         vc.presenter = presenter
         return vc
     }
-    
-    required init(presentingVc : UIViewController) {
+    required init(presentingVc: UIViewController) {
         self.presentingVc = presentingVc
     }
-    
     func showDetail(item: Items) {
-        
     }
 }

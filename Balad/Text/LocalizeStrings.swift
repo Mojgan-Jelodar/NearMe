@@ -22,4 +22,3 @@ struct LocalizeStrings {
         static let ok = "OK".localiz()
     }
 }
-
