@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Balad
+
+  Created by mozhgan on 3/26/21.
+  
+*/
+"ALERT" = "Alert!!!";
+"OK" = "Ok";
+"THERE_IS_NO_INTERNET_CONNECTION" = "";
+"THERE_IS_NO_ITEM_TO_DISPLAY" = "";

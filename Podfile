@@ -9,9 +9,9 @@ target 'Balad' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
-   pod 'Moya', '~> 13.0.0'
-   pod 'PromiseKit', '~> 6.8'
-   pod 'ObjectMapper' ,'~> 4.2.0'
+   pod 'Moya'
+   #pod 'PromiseKit', '~> 6.8'
+   #pod 'ObjectMapper' ,'~> 4.2.0'
 
   target 'BaladTests' do
     inherit! :search_paths
