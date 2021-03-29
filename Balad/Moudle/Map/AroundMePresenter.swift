@@ -23,13 +23,16 @@ final class AroundMePresenter: V2PAroundMeProtocol {
     }
 
     func showDetail(item: Items) {
-
+        router?.showDetail(item: item)
     }
 }
 
 extension AroundMePresenter: I2PAroundMeProtocol {
     func fetched(items: [Items]) {
         view?.stopLoading()
+        guard !items.isEmpty else {
+            return
+        }
         view?.show(items: items)
     }
 

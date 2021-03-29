@@ -8,8 +8,8 @@
 import Foundation
 
 struct LocalizeStrings {
-    struct AroundMeView {
-        static let title = "PULL_TO_REFRESH".localiz()
+    struct AroundMe {
+        static let title = "AROUND_ME".localiz()
     }
     struct Home {
         static let choose = "CHOOSE".localiz()

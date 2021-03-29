@@ -20,17 +20,12 @@ final class AroundMeInteractor: P2IAroundMeProtocol {
     required init(delegate: I2PAroundMeProtocol ) {
         self.output = delegate
     }
-    private lazy var dataProviders: [DataProvider] = {
-        return [ServiceDataProvider(delegate: self),
-                CacheDataProvider(delegate: self)]
+    private lazy var dataProvider: DataProvider = {
+        return ServiceDataProvider(delegate: self)
     }()
 
     func explore(lat: Double, long: Double) {
-        if Connectivity.isConnectedToInternet() {
-            dataProviders[0].fetch(lat: lat, long: long)
-        } else {
-            dataProviders[1].fetch(lat: lat, long: long)
-        }
+        dataProvider.fetch(lat: lat, long: long)
     }
 }
 

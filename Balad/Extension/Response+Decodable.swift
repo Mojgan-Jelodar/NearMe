@@ -11,7 +11,7 @@ import Moya
 
 extension Response {
     // MARK: - mapObject
-    public func mapObject<T: Codable>(_ type: T.Type, path: String? = nil) throws -> T {
+    public func mapObject<T: Decodable>(_ type: T.Type, path: String? = nil) throws -> T {
         do {
             return try JSONDecoder().decode(T.self, from: try getJsonData(path))
         } catch let error {
@@ -20,7 +20,7 @@ extension Response {
     }
 
     // MARK: - mapArray
-    public func mapArray<T: Codable>(_ type: T.Type, path: String? = nil) throws -> [T] {
+    public func mapArray<T: Decodable>(_ type: T.Type, path: String? = nil) throws -> [T] {
         do {
             return try JSONDecoder().decode([T].self, from: try getJsonData(path))
         } catch let error {

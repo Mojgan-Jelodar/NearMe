@@ -10,8 +10,8 @@ target 'Balad' do
   use_frameworks!
   
    pod 'Moya'
-   #pod 'PromiseKit', '~> 6.8'
-   #pod 'ObjectMapper' ,'~> 4.2.0'
+   pod 'RealmSwift' , '~>10.7.2'
+   pod 'Kingfisher', '~> 6.0'
 
   target 'BaladTests' do
     inherit! :search_paths

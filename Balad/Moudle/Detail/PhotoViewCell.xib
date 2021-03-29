@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PhotoViewCell" customModule="Balad" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="297" height="230"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="297" height="230"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cH0-JV-0un">
+                        <rect key="frame" x="0.0" y="0.0" width="297" height="230"/>
+                    </imageView>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mwb-7n-PTj">
+                        <rect key="frame" x="48.5" y="113" width="200" height="4"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="DIx-iM-AMW"/>
+                        </constraints>
+                    </progressView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Mwb-7n-PTj" firstAttribute="centerX" secondItem="cH0-JV-0un" secondAttribute="centerX" id="5aA-os-Fuu"/>
+                <constraint firstItem="cH0-JV-0un" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9r7-Kp-YDk"/>
+                <constraint firstAttribute="trailing" secondItem="cH0-JV-0un" secondAttribute="trailing" id="ElW-gS-0Gr"/>
+                <constraint firstItem="cH0-JV-0un" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Guh-U3-u9S"/>
+                <constraint firstItem="Mwb-7n-PTj" firstAttribute="trailing" secondItem="cH0-JV-0un" secondAttribute="trailing" id="KCs-0W-dBC"/>
+                <constraint firstAttribute="bottom" secondItem="cH0-JV-0un" secondAttribute="bottom" id="djm-A4-9hS"/>
+                <constraint firstItem="Mwb-7n-PTj" firstAttribute="leading" secondItem="cH0-JV-0un" secondAttribute="leading" id="gpa-Nt-vS5"/>
+                <constraint firstItem="Mwb-7n-PTj" firstAttribute="centerY" secondItem="cH0-JV-0un" secondAttribute="centerY" id="kEU-3s-m0r"/>
+            </constraints>
+            <size key="customSize" width="297" height="230"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="KCs-0W-dBC"/>
+                    <exclude reference="gpa-Nt-vS5"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="downloadProgerssBar" destination="Mwb-7n-PTj" id="qc0-91-0pM"/>
+                <outlet property="imgView" destination="cH0-JV-0un" id="uU7-lz-eN3"/>
+            </connections>
+            <point key="canvasLocation" x="316.66666666666669" y="129.24107142857142"/>
+        </collectionViewCell>
+    </objects>
+</document>

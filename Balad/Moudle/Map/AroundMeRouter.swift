@@ -26,5 +26,9 @@ final class AroundMeRouter: P2RAroundMeProtocol {
         self.presentingVc = presentingVc
     }
     func showDetail(item: Items) {
+        let vc = DetailRouter.createModule(item: item)
+        //vc.modalPresentationStyle = .overCurrentContext
+        //vc.modalTransitionStyle = .flipHorizontal
+        presentingVc?.present(vc, animated: true)
     }
 }

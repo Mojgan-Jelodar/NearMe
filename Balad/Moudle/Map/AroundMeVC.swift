@@ -33,6 +33,7 @@ final class AroundMeVC: UIViewController {
 extension AroundMeVC {
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = LocalizeStrings.AroundMe.title
         locationManager.requestWhenInUseAuthorization()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -57,35 +58,20 @@ extension AroundMeVC: CLLocationManagerDelegate {
 }
 extension AroundMeVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard !(view.annotation is MKUserLocation),
-              let venueAnnotation = view.annotation as? VenueAnnotation else { return }
-        let calloutView = CalloutView.loadFromNib()
-        calloutView.item = venueAnnotation.item
-        calloutView.delegate = self
-        calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
-        view.addSubview(calloutView)
-        mapView.setCenter((view.annotation?.coordinate)!, animated: true)
+        guard let venueAnnotation = view.annotation as? VenueAnnotation else { return }
+        presenter?.showDetail(item: venueAnnotation.item)
     }
-//    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-//        if view.isKind(of: MKAnnotationView.self) {
-//            for subview in view.subviews {
-//                subview.removeFromSuperview()
-//            }
-//        }
-//    }
-}
-
-extension AroundMeVC: CalloutViewDelegate {
-    func showDetail(item: Items) {
-
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        let regionRadius = 1000.0 // in meters
+        let coordinateRegion = MKCoordinateRegion.init(center: userLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        self.mapView?.setRegion( coordinateRegion, animated: true)
     }
 }
+
 extension AroundMeVC: P2VAroundMeProtocol {
     func show(items: [Items]) {
         let annotaions = items.map({return VenueAnnotation(item: $0)})
         self.mapView?.addAnnotations(annotaions)
-        let viewRegion = MKCoordinateRegion(center: annotaions[annotaions.count / 2].coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
-        self.mapView?.setRegion(viewRegion, animated: true)
     }
     func startLoading() {
         self.view.lock()
