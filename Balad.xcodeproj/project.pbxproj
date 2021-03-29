@@ -15,6 +15,8 @@
 		0913750C2611EA380005367E /* TipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0913750A2611EA380005367E /* TipCell.xib */; };
 		091375112611F49F0005367E /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091375102611F49F0005367E /* DetailPresenter.swift */; };
 		091375162611FA980005367E /* PhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091375152611FA980005367E /* PhotoResponse.swift */; };
+		09137526261215520005367E /* DetachableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09379D1A261057A90040184F /* DetachableObject.swift */; };
+		0913752E2612159F0005367E /* VenueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913752D2612159F0005367E /* VenueAnnotation.swift */; };
 		0922610C260E1DA500A4C345 /* RichStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092260F0260E1DA400A4C345 /* RichStatus.swift */; };
 		0922610D260E1DA500A4C345 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092260F1260E1DA400A4C345 /* Categories.swift */; };
 		0922610F260E1DA500A4C345 /* Hours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092260F3260E1DA400A4C345 /* Hours.swift */; };
@@ -47,8 +49,6 @@
 		092261D8260E4DCA00A4C345 /* AroundMeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092261D6260E4DCA00A4C345 /* AroundMeVC.swift */; };
 		092261D9260E4DCA00A4C345 /* AroundMeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 092261D7260E4DCA00A4C345 /* AroundMeVC.xib */; };
 		0922621A260E712300A4C345 /* UIView+Nibloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09226219260E712300A4C345 /* UIView+Nibloadable.swift */; };
-		09226224260E7AEE00A4C345 /* VenueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09226222260E7AEE00A4C345 /* VenueAnnotation.swift */; };
-		09379D1B261057A90040184F /* DetachableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09379D1A261057A90040184F /* DetachableObject.swift */; };
 		09379D2E26107A150040184F /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09379D2C26107A150040184F /* DetailVC.swift */; };
 		09379D2F26107A150040184F /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09379D2D26107A150040184F /* DetailVC.xib */; };
 		09379D3726107A6C0040184F /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09379D3626107A6C0040184F /* DetailRouter.swift */; };
@@ -94,6 +94,7 @@
 		0913750A2611EA380005367E /* TipCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TipCell.xib; sourceTree = "<group>"; };
 		091375102611F49F0005367E /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		091375152611FA980005367E /* PhotoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoResponse.swift; sourceTree = "<group>"; };
+		0913752D2612159F0005367E /* VenueAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueAnnotation.swift; sourceTree = "<group>"; };
 		092260F0260E1DA400A4C345 /* RichStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RichStatus.swift; sourceTree = "<group>"; };
 		092260F1260E1DA400A4C345 /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		092260F3260E1DA400A4C345 /* Hours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hours.swift; sourceTree = "<group>"; };
@@ -128,7 +129,6 @@
 		092261D6260E4DCA00A4C345 /* AroundMeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMeVC.swift; sourceTree = "<group>"; };
 		092261D7260E4DCA00A4C345 /* AroundMeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AroundMeVC.xib; sourceTree = "<group>"; };
 		09226219260E712300A4C345 /* UIView+Nibloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nibloadable.swift"; sourceTree = "<group>"; };
-		09226222260E7AEE00A4C345 /* VenueAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueAnnotation.swift; sourceTree = "<group>"; };
 		09379D1A261057A90040184F /* DetachableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachableObject.swift; sourceTree = "<group>"; };
 		09379D2C26107A150040184F /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailVC.swift; path = Balad/Persist/DetailVC.swift; sourceTree = SOURCE_ROOT; };
 		09379D2D26107A150040184F /* DetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetailVC.xib; path = Balad/Persist/DetailVC.xib; sourceTree = SOURCE_ROOT; };
@@ -218,7 +218,7 @@
 		09379D2A261079C50040184F /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				09226222260E7AEE00A4C345 /* VenueAnnotation.swift */,
+				0913752D2612159F0005367E /* VenueAnnotation.swift */,
 				0922617A260E337E00A4C345 /* AroundMePresenter.swift */,
 				0922617F260E339C00A4C345 /* AroundMeRouter.swift */,
 				09226184260E33AE00A4C345 /* AroundMeInteractor.swift */,
@@ -663,8 +663,8 @@
 				09226192260E3AAB00A4C345 /* ServiceDataProvider.swift in Sources */,
 				0922621A260E712300A4C345 /* UIView+Nibloadable.swift in Sources */,
 				09E8820825FA9627004446FF /* VenueService.swift in Sources */,
+				0913752E2612159F0005367E /* VenueAnnotation.swift in Sources */,
 				09226121260E1DA500A4C345 /* PlaceResponse.swift in Sources */,
-				09226224260E7AEE00A4C345 /* VenueAnnotation.swift in Sources */,
 				09226144260E220300A4C345 /* Response+Decodable.swift in Sources */,
 				098EA16B260F6F5900699F8C /* File.swift in Sources */,
 				0922610C260E1DA500A4C345 /* RichStatus.swift in Sources */,
@@ -691,8 +691,8 @@
 				0922610D260E1DA500A4C345 /* Categories.swift in Sources */,
 				09226123260E1DA500A4C345 /* Tips.swift in Sources */,
 				0922617B260E337E00A4C345 /* AroundMePresenter.swift in Sources */,
-				09379D1B261057A90040184F /* DetachableObject.swift in Sources */,
 				091375112611F49F0005367E /* DetailPresenter.swift in Sources */,
+				09137526261215520005367E /* DetachableObject.swift in Sources */,
 				0922610F260E1DA500A4C345 /* Hours.swift in Sources */,
 				091375162611FA980005367E /* PhotoResponse.swift in Sources */,
 				092261B0260E489C00A4C345 /* LocalizeStrings.swift in Sources */,
