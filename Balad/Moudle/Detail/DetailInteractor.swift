@@ -7,30 +7,46 @@
 
 import Foundation
 protocol I2PDetailProtocol: class {
-    func fetched(photos: Photos)
+    func fetched(photos: [Photo])
+    func fetched(tips: [Comment])
     func fetched(error: Error)
 }
 protocol P2IDetailProtocol: class {
     var output: I2PDetailProtocol? { get set }
-    func photo(id: String)
+    func photos(id: String)
+    func tips(id: String)
 }
 
 final class DetailInteractor: P2IDetailProtocol {
+
     weak internal var output: I2PDetailProtocol?
-    private let venueService = VenueService()
+    private lazy var dataProvider: VenueDataProvider = {
+        return VenueServiceDataProvider(delegate: self)
+    }()
     required init(delegate: I2PDetailProtocol ) {
         self.output = delegate
     }
 
-    func photo(id: String) {
-        venueService.photo(id: id) { [weak self] (response: BaseResponse<PhotoResponse>) in
-            guard let strongSelf  = self,
-                  let photos = response.data?.photos else { return}
-            strongSelf.output?.fetched(photos: photos)
-        } failure: { [weak self](error) in
-            guard let strongSelf  = self else { return}
-            strongSelf.output?.fetched(error: error)
-        }
+    func photos(id: String) {
+        dataProvider.photos(id: id)
 
     }
+    func tips(id: String) {
+        dataProvider.tips(id: id)
+    }
+}
+
+extension DetailInteractor: VenueDataProviderDelegate {
+    func fetched(photos: [Photo]) {
+        self.output?.fetched(photos: photos)
+    }
+
+    func fetched(tips: [Comment]) {
+        self.output?.fetched(tips: tips)
+    }
+
+    func failedFetchBy(error: Error) {
+        self.output?.fetched(error: error)
+    }
+
 }

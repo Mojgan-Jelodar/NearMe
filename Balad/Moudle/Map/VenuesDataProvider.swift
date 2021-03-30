@@ -7,10 +7,10 @@
 
 import Foundation
 protocol DataProviderDelegate: class {
-    func fetched(items: [Items])
+    func fetched(items: [Venue])
     func failedFetchBy(error: Error)
 }
-protocol DataProvider: class {
+protocol VenuesDataProvider: class {
     var delegate: DataProviderDelegate? { get set}
     func fetch(lat: Double, long: Double)
 }

@@ -42,3 +42,27 @@ extension List: DetachableObject {
     return result
   }
 }
+
+extension Realm {
+    func writeAsync<T: ThreadConfined>(obj: T, errorHandler: @escaping ((_ error: Swift.Error) -> Void) = { _ in return }, block: @escaping ((Realm, T?) -> Void)) {
+
+        let wrappedObj = ThreadSafeReference(to: obj)
+        let backgroundQueue = DispatchQueue(label: ".realm")
+        let config = self.configuration
+        backgroundQueue.async {
+            autoreleasepool {
+                do {
+
+                    let realm = try Realm(configuration: config)
+                    guard let obj = realm.resolve(wrappedObj), obj.isInvalidated == false else { return }
+                    try realm.write {
+                        block(realm, obj)
+                    }
+                } catch {
+                    errorHandler(error)
+                }
+            }
+        }
+    }
+
+}

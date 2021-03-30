@@ -7,19 +7,16 @@
 
 import Moya
 struct  VenueService {
-    private let provider = MoyaProvider<VenuesApi>(plugins: [NetworkLoggerPlugin()])
-    private let clientId = "XXXX"
-    private let clientSecret = "XXXX"
+    private let provider = MoyaProvider<VenueApi>(plugins: [NetworkLoggerPlugin()])
 
-    func venues(lat: Double,
-                long: Double,
-                success :@escaping (BaseResponse<PlaceResponse>) -> Void,
+    func photos(id: String,
+                success :@escaping (BaseResponse<PhotosResponse>) -> Void,
                 failure :@escaping (Error) -> Void) {
-        provider.request(VenuesApi.explore(lag: lat, long: long)) { result in
+        provider.request(VenueApi.photos(id: id)) { result in
             switch result {
             case .success(let response) :
                 do {
-                    let output = try response.mapObject(BaseResponse<PlaceResponse>.self)
+                    let output = try response.mapObject(BaseResponse<PhotosResponse>.self)
                     success(output)
                 } catch {
                     failure(error)
@@ -29,15 +26,14 @@ struct  VenueService {
             }
         }
     }
-
-    func photo(id: String,
-               success :@escaping (BaseResponse<PhotoResponse>) -> Void,
-               failure :@escaping (Error) -> Void) {
-        provider.request(VenuesApi.photo(id: id)) { result in
+    func tips(id: String,
+              success :@escaping (BaseResponse<TipsResponse>) -> Void,
+              failure :@escaping (Error) -> Void) {
+        provider.request(VenueApi.tips(id: id)) { result in
             switch result {
             case .success(let response) :
                 do {
-                    let output = try response.mapObject(BaseResponse<PhotoResponse>.self)
+                    let output = try response.mapObject(BaseResponse<TipsResponse>.self)
                     success(output)
                 } catch {
                     failure(error)

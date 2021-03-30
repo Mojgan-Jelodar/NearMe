@@ -10,25 +10,42 @@ protocol V2PDetailProtocol: class {
     var view: P2VDetailProtocol? {get set}
     var interactor: P2IDetailProtocol? {get set}
     var router: P2RDetailProtocol? {get set}
-    func show(items: Items)
+    var photos: [Photo] { get set }
+    var tips: [Comment] { get set}
+    func show(item: Venue)
 }
 final class DetailPresenter: V2PDetailProtocol {
+    var photos: [Photo] = [] {
+        didSet {
+            self.view?.show(photos: photos)
+        }
+    }
+    var tips: [Comment] = [] {
+        didSet {
+            self.view?.show(tips: tips)
+        }
+    }
     weak var view: P2VDetailProtocol?
     var interactor: P2IDetailProtocol?
     var router: P2RDetailProtocol?
 
-    func show(items: Items) {
-        view?.show(items: items)
-        interactor?.photo(id: items.venue?.id ?? "")
+    func show(item: Venue) {
+        view?.show(item: item)
+        interactor?.photos(id: item.id)
+        interactor?.tips(id: item.id)
     }
 }
 
 extension DetailPresenter: I2PDetailProtocol {
     func fetched(error: Error) {
-        view?.show(error: error)
+        self.view?.show(error: error)
     }
 
-    func fetched(photos: Photos) {
-        view?.show(photos: photos)
+    func fetched(photos: [Photo]) {
+        self.photos = photos
+    }
+
+    func fetched(tips: [Comment]) {
+        self.tips = tips
     }
 }

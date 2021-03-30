@@ -60,7 +60,8 @@ extension RealmStorageContext {
             throw NSError()
         }
         try self.safeWrite {
-            let newObject = realm.create(model as! Object.Type, value: [], update: .all) as! T
+            guard let realmObject = model as? Object.Type,
+                  let newObject = realm.create(realmObject, value: [], update: .all) as? T  else { return }
             completion(newObject)
         }
     }
@@ -69,16 +70,17 @@ extension RealmStorageContext {
         guard let realm = self.realm else {
             throw NSError()
         }
-
         try self.safeWrite {
-            realm.add(object as! Object)
+            guard let realmObject = object as? Object else { return }
+            realm.add(realmObject)
         }
     }
 
     func save(objects: [Storable]) throws {
-        guard let realm = self.realm else { throw NSError() }
+        guard let realmContext = self.realm,
+              let realmObject = (objects as? [Object]) else { throw NSError() }
         try self.safeWrite {
-            realm.add(objects as! [Object], update: Realm.UpdatePolicy.all)
+            realmContext.add(realmObject, update: Realm.UpdatePolicy.all)
         }
     }
 
@@ -96,19 +98,18 @@ extension RealmStorageContext {
         }
 
         try self.safeWrite {
-            realm.delete(object as! Object)
+            guard let realmObject = object as? Object else { return }
+            realm.delete(realmObject)
         }
     }
 
     func deleteAll<T: Storable>(_ model: T.Type) throws {
-        guard let realm = self.realm else {
-            throw NSError()
-        }
-
+        guard let realmContext = self.realm else { throw NSError() }
         try self.safeWrite {
-            let objects = realm.objects(model as! Object.Type)
+            guard let realmObject = model as? Object.Type else { return }
+            let objects = realmContext.objects(realmObject)
             for object in objects {
-                realm.delete(object)
+                realmContext.delete(object)
             }
         }
     }
@@ -124,7 +125,8 @@ extension RealmStorageContext {
 
 extension RealmStorageContext {
     func fetch<T: Storable>(_ model: T.Type, predicate: NSPredicate? = nil, sorted: Sorted? = nil, completion: (([T]) -> Void)) {
-        var objects = self.realm?.objects(model as! Object.Type)
+        guard let modelType = model as? Object.Type else { return }
+        var objects = self.realm?.objects(modelType)
         if let predicate = predicate {
             objects = objects?.filter(predicate)
         }
@@ -133,7 +135,10 @@ extension RealmStorageContext {
         }
         var accumulate: [T] = [T]()
         for object in objects! {
-            accumulate.append(object as! T)
+            guard let realmObject = object.detached() as? T else {
+                return
+            }
+            accumulate.append(realmObject)
         }
         completion(accumulate)
     }

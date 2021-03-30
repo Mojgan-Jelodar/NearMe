@@ -6,15 +6,11 @@
 //
 
 import Foundation
-final class CacheDataProvider : DataProvider {
-    var delegate: DataProviderDelegate?
-    
-    required init(delegate : DataProviderDelegate) {
+final class CacheDataProvider: DataProvider {
+    weak var delegate: DataProviderDelegate?
+    required init(delegate: DataProviderDelegate) {
         self.delegate = delegate
     }
-    
     func fetch(lat: Double, long: Double) {
     }
-    
-    
 }

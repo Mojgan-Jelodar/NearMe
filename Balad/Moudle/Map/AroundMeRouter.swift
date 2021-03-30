@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 protocol P2RAroundMeProtocol: class {
     static func createModule() -> UIViewController
-    func showDetail(item: Items)
+    func showDetail(item: Venue)
 }
 final class AroundMeRouter: P2RAroundMeProtocol {
     weak var presentingVc: UIViewController?
@@ -25,7 +25,7 @@ final class AroundMeRouter: P2RAroundMeProtocol {
     required init(presentingVc: UIViewController) {
         self.presentingVc = presentingVc
     }
-    func showDetail(item: Items) {
+    func showDetail(item: Venue) {
         let vc = DetailRouter.createModule(item: item)
         //vc.modalPresentationStyle = .overCurrentContext
         //vc.modalTransitionStyle = .flipHorizontal

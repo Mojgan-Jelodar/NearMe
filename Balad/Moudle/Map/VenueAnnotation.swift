@@ -9,22 +9,22 @@ import CoreLocation
 import MapKit
 
 class VenueAnnotation: NSObject, MKAnnotation {
-    private(set) var item: Items!
+    private(set) var item: Venue!
 
-    required init(item: Items) {
+    required init(item: Venue) {
         self.item = item
     }
 
     var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2DMake(CLLocationDegrees(self.item?.venue?.location?.lat ?? 0.0),
-                                          CLLocationDegrees(self.item?.venue?.location?.lng ?? 0.0))
+        return CLLocationCoordinate2DMake(CLLocationDegrees(item.location?.lat ?? 0.0),
+                                          CLLocationDegrees(item?.location?.lng ?? 0.0))
     }
 
     var title: String? {
-        return self.item?.venue?.name
+        return item.name
     }
 
     var subtitle: String? {
-        return self.item?.venue?.location?.formattedAddress.joined(separator: "-")
+        return item.location?.formattedAddress.joined(separator: "-")
     }
 }

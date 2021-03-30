@@ -16,7 +16,7 @@ final class TipCell: UITableViewCell {
 
 }
 extension TipCell {
-    func configCell(tip: Tips) {
+    func configCell(tip: Comment) {
         lblUsername.text = "\(tip.user?.firstName ?? "" )" + "\(tip.user?.lastName ?? "" )"
         lblComment.text = tip.text
         lblLikeCount.text = "\(tip.agreeCount)"

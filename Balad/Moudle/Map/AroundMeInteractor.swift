@@ -7,7 +7,7 @@
 
 import Foundation
 protocol I2PAroundMeProtocol: class {
-    func fetched(items: [Items])
+    func fetched(items: [Venue])
     func fetched(error: Error)
 }
 protocol P2IAroundMeProtocol: class {
@@ -20,8 +20,8 @@ final class AroundMeInteractor: P2IAroundMeProtocol {
     required init(delegate: I2PAroundMeProtocol ) {
         self.output = delegate
     }
-    private lazy var dataProvider: DataProvider = {
-        return ServiceDataProvider(delegate: self)
+    private lazy var dataProvider: VenuesDataProvider = {
+        return VenuesServiceDataProvider(delegate: self)
     }()
 
     func explore(lat: Double, long: Double) {
@@ -30,7 +30,7 @@ final class AroundMeInteractor: P2IAroundMeProtocol {
 }
 
 extension AroundMeInteractor: DataProviderDelegate {
-    func fetched(items: [Items]) {
+    func fetched(items: [Venue]) {
         self.output?.fetched(items: items)
     }
 

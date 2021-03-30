@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-final class CacheDataProvider: DataProvider {
+final class VenuesCacheDataProvider: VenuesDataProvider {
     weak var delegate: DataProviderDelegate?
     private lazy var contextPersist: ContextPersist = {
         let tmp = ContextPersist(strategy: DbPersist())
@@ -21,10 +21,11 @@ final class CacheDataProvider: DataProvider {
 
     func fetch(lat: Double, long: Double) {
         let userLocation = CLLocation(latitude: lat, longitude: long)
-        self.contextPersist.retrive { [weak self] (items: [Items]) in
+        self.contextPersist.retrive { [weak self] (items: [Venue]) in
             guard let strongSelf = self else { return }
             let filteredItems = items.filter { (item) -> Bool in
-                            let venueLocation = CLLocation(latitude: item.venue?.location?.lat ?? 0, longitude: item.venue?.location?.lng ?? 0)
+                let venueLocation = CLLocation(latitude: item.location?.lat ?? 0.0,
+                                               longitude: item.location?.lng ?? 0)
                             let distanceInMeters = userLocation.distance(from: venueLocation)
                             return distanceInMeters <= 1000
                         }
@@ -32,7 +33,7 @@ final class CacheDataProvider: DataProvider {
         }
     }
 
-    func save(items: [Items]) {
+    func save(items: [Venue]) {
         do {
             try self.contextPersist.save(objects: items)
         } catch let error {

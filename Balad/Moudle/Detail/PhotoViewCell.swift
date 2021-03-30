@@ -31,11 +31,14 @@ final class PhotoViewCell: UICollectionViewCell {
     }
 
     func configCell(photo: Photo) {
-        KF.url(URL(string: (photo.prefix ?? "") +  PhotoQulities.original.value() + (photo.suffix ?? "") ))
+        self.downloadProgerssBar.isHidden = false
+        KF.url(URL(string: photo.prefix +  PhotoQulities.original.value() + photo.suffix ))
             .loadDiskFileSynchronously()
             .diskCacheExpiration(StorageExpiration.days(3))
-            .fade(duration: 0.25).onSuccess({ (_) in
-                self.downloadProgerssBar.isHidden = true
+            .fade(duration: 0.25).onSuccess({[weak self] (result) in
+                self?.downloadProgerssBar.isHidden = true
+                let image = result.image
+                ImageCache.default.store(image, forKey: result.source.cacheKey)
             }).onFailure({ (error) in
                 print("Download Failed by Error ::\(error)")
             }).onProgress({ [weak self](receivedSize, totalSize) in

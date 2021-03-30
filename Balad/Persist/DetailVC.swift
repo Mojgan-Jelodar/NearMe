@@ -8,15 +8,15 @@
 import UIKit
 
 protocol P2VDetailProtocol: class {
-    func show(photos: Photos)
-    func show(items: Items)
+    func show(photos: [Photo])
+    func show(tips: [Comment])
+    func show(item: Venue)
     func show(error: Error)
 }
 
 final class DetailVC: UIViewController {
 
-    private(set) var item: Items!
-    private(set) var photos: Photos?
+    private(set) var item: Venue!
     private let photosReuseIdentifier = "\(PhotoViewCell.self)"
     private let tipsReuseIdentifier = "\(TipCell.self)"
     private let sectionInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
@@ -55,7 +55,7 @@ final class DetailVC: UIViewController {
         print("Deinit was called :\(DetailVC.self)")
     }
 
-    required init(item: Items) {
+    required init(item: Venue) {
         super.init(nibName: "\(DetailVC.self)", bundle: nil)
         self.item = item
     }
@@ -69,13 +69,13 @@ extension DetailVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.show(items: item)
+        presenter?.show(item: item)
     }
 }
 
 extension DetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.item.tips.count
+        return self.presenter?.tips.count ?? 0
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,30 +83,33 @@ extension DetailVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tipsReuseIdentifier, for: indexPath) as! TipCell
-        cell.configCell(tip: item.tips[indexPath.row])
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: tipsReuseIdentifier, for: indexPath) as? TipCell
+        cell?.configCell(tip: self.presenter!.tips[indexPath.row])
+        return cell ?? UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: tipsReuseIdentifier)
     }
 }
 
 extension DetailVC: P2VDetailProtocol {
-    func show(photos: Photos) {
-        self.photos = photos
+    func show(photos: [Photo]) {
         self.galleryCollectionView.reloadData()
         self.pageControl.currentPage = 0
-        self.pageControl.numberOfPages = photos.count ?? 0
+        self.pageControl.numberOfPages = photos.count
     }
 
-    func show(items: Items) {
-        lblName.text = item.venue?.name
-        lblRating.text = "\(item.venue?.rating ?? 0.0)"
-        lblAddress.text = item.venue?.location?.formattedAddress.joined(separator: ",")
-        lblDistance.text = "\(item.venue?.location?.distance ?? 0)"
-        lblPhone.text = "\(items.venue?.contact?.formattedPhone ?? "-")"
-        lblHours.text = "\(items.venue?.hours?.status ?? "-")"
-        lblTipCount.text = "\(items.venue?.stats?.tipCount ?? 0)"
-        lblChechInCount.text = "\(items.venue?.stats?.checkinsCount ?? 0)"
-        lblUserCount.text = "\(items.venue?.stats?.usersCount ?? 0)"
+    func show(tips: [Comment]) {
+        self.tipsTableView.reloadData()
+    }
+
+    func show(item: Venue) {
+        lblName.text = item.name
+        lblRating.text = "\(item.rating)"
+        lblAddress.text = item.location?.formattedAddress.joined(separator: ",")
+        lblDistance.text = "\(item.location?.distance ?? 0)"
+        lblPhone.text = "\(item.contact?.formattedPhone ?? "-")"
+        lblHours.text = "\(item.hours?.isOpen ?? false ? "is open" : "is closed" )"
+        lblTipCount.text = "\(item.stats?.tipCount ?? 0)"
+        lblChechInCount.text = "\(item.stats?.checkinsCount ?? 0)"
+        lblUserCount.text = "\(item.stats?.usersCount ?? 0)"
     }
 
     func show(error: Error) {
@@ -118,13 +121,13 @@ extension DetailVC: P2VDetailProtocol {
 
 extension DetailVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos?.count ?? 0
+        return presenter?.photos.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photosReuseIdentifier, for: indexPath) as! PhotoViewCell
-        cell.configCell(photo: photos!.items[indexPath.row])
-        return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photosReuseIdentifier, for: indexPath) as? PhotoViewCell
+        cell?.configCell(photo: presenter!.photos[indexPath.row])
+        return cell ?? PhotoViewCell()
     }
 
 }

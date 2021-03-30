@@ -15,7 +15,7 @@ extension UIView {
             lockView.alpha = 0.0
             addSubview(lockView)
             lockView.center = superview!.center
-            let activity = UIActivityIndicatorView(style: .white)
+            let activity = UIActivityIndicatorView(style: .large)
             activity.hidesWhenStopped = true
             lockView.addSubview(activity)
             activity.center = lockView.center

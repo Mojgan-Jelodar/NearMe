@@ -12,7 +12,7 @@ protocol P2VAroundMeProtocol: NSObjectProtocol {
     func startLoading()
     func show(error: Error)
     func stopLoading()
-    func show(items: [Items])
+    func show(items: [Venue])
 }
 
 final class AroundMeVC: UIViewController {
@@ -69,7 +69,7 @@ extension AroundMeVC: MKMapViewDelegate {
 }
 
 extension AroundMeVC: P2VAroundMeProtocol {
-    func show(items: [Items]) {
+    func show(items: [Venue]) {
         let annotaions = items.map({return VenueAnnotation(item: $0)})
         self.mapView?.addAnnotations(annotaions)
     }
