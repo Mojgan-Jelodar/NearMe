@@ -9,15 +9,11 @@ import Foundation
 import RealmSwift
 protocol PersistStrategy {
     mutating func save<T: Storable>(objects: [T]) throws
-    mutating func retrive<T: Storable>(objects: ([T]) -> Void)
     mutating func retrive<T: Storable>(_ model: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: (([T]) -> Void))
 }
 struct FilePersist: PersistStrategy {
     mutating func save<T>(objects: [T]) throws where T: Storable {
 
-    }
-
-    mutating func retrive<T>(objects: ([T]) -> Void) where T: Storable {
     }
 
     func retrive<T: Storable>(_ model: T.Type, predicate: NSPredicate? = nil, sorted: Sorted? = nil, completion: (([T]) -> Void)) {
@@ -45,11 +41,6 @@ struct DbPersist: PersistStrategy {
         try realmStorageContext?.save(objects: objects)
     }
 
-    mutating func retrive<T>(objects: ([T]) -> Void) where T: Storable {
-        realmStorageContext?.fetch(T.self) { (items) in
-            objects(items)
-        }
-    }
     mutating func retrive<T: Storable>(_ model: T.Type, predicate: NSPredicate? = nil, sorted: Sorted? = nil, completion: (([T]) -> Void)) {
         realmStorageContext?.fetch(model, predicate: predicate, sorted: sorted, completion: { (objects) in
             completion(objects)
@@ -71,13 +62,7 @@ struct ContextPersist: PersistStrategy {
         try self.strategy.save(objects: objects)
     }
 
-    mutating func retrive<T>(objects: ([T]) -> Void) where T: Storable {
-        self.strategy.retrive { (items) in
-            objects(items)
-        }
-    }
-
-    mutating func retrive<T>(_ model: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: (([T]) -> Void)) where T: Storable {
+    mutating func retrive<T>(_ model: T.Type, predicate: NSPredicate? = nil, sorted: Sorted? = nil, completion: (([T]) -> Void)) where T: Storable {
         self.strategy.retrive(model, predicate: predicate, sorted: sorted, completion: completion)
     }
 }
