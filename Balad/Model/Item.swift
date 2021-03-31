@@ -8,7 +8,7 @@ import RealmSwift
 class Item: Decodable {
 
 	@objc dynamic var venue: Venue?
-    var tips = List<Comment>()
+
 	enum CodingKeys: String, CodingKey {
 		case venue
 	}

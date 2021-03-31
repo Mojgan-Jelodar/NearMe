@@ -16,6 +16,9 @@ protocol P2IAroundMeProtocol: class {
 }
 
 final class AroundMeInteractor: P2IAroundMeProtocol {
+    deinit {
+        print("Deinit was called :\(AroundMePresenter.self)")
+    }
     weak internal var output: I2PAroundMeProtocol?
     required init(delegate: I2PAroundMeProtocol ) {
         self.output = delegate

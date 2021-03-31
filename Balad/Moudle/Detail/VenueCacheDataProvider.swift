@@ -8,8 +8,10 @@
 import Foundation
 import RealmSwift
 final class VenueCacheDataProvider: VenueDataProvider {
+    deinit {
+        print("Deinit was called :\(VenuesServiceDataProvider.self)")
+    }
     weak var delegate: VenueDataProviderDelegate?
-
     private lazy var contextPersist: ContextPersist = {
         let tmp = ContextPersist(strategy: DbPersist())
         return tmp

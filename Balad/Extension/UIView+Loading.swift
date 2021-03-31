@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 extension UIView {
     func lock() {
         if viewWithTag(10) == nil {
@@ -14,7 +15,9 @@ extension UIView {
             lockView.tag = 10
             lockView.alpha = 0.0
             addSubview(lockView)
-            lockView.center = superview!.center
+            lockView.snp.makeConstraints { (maker) in
+                maker.edges.equalToSuperview()
+            }
             let activity = UIActivityIndicatorView(style: .large)
             activity.hidesWhenStopped = true
             lockView.addSubview(activity)

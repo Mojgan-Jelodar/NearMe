@@ -50,6 +50,8 @@
 		09494BC72612557400EF0AC8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09494BBD2612557400EF0AC8 /* Comment.swift */; };
 		09494BC82612557400EF0AC8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09494BBE2612557400EF0AC8 /* User.swift */; };
 		09494BCA2612557400EF0AC8 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09494BC02612557400EF0AC8 /* Venue.swift */; };
+		095A6265261479A30026AB86 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095A6263261479A30026AB86 /* DetailCell.swift */; };
+		095A6266261479A30026AB86 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095A6264261479A30026AB86 /* DetailCell.xib */; };
 		0965785C26130B3600254A08 /* VenueDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965785B26130B3600254A08 /* VenueDataProvider.swift */; };
 		0965786126130C6C00254A08 /* VenueServiceDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965786026130C6C00254A08 /* VenueServiceDataProvider.swift */; };
 		0965786626130C8200254A08 /* VenueCacheDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965786526130C8200254A08 /* VenueCacheDataProvider.swift */; };
@@ -60,7 +62,7 @@
 		096578852613228C00254A08 /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096578842613228C00254A08 /* Tips.swift */; };
 		098EA154260F56DD00699F8C /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098EA153260F56DD00699F8C /* Storable.swift */; };
 		098EA163260F682C00699F8C /* RealmStorageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098EA162260F682C00699F8C /* RealmStorageContext.swift */; };
-		098EA16B260F6F5900699F8C /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098EA16A260F6F5900699F8C /* File.swift */; };
+		098EA16B260F6F5900699F8C /* PersistStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098EA16A260F6F5900699F8C /* PersistStrategy.swift */; };
 		09E880E725FA61CE004446FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E880E625FA61CE004446FF /* AppDelegate.swift */; };
 		09E880F025FA61CF004446FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09E880EF25FA61CF004446FF /* Assets.xcassets */; };
 		09E880F325FA61CF004446FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09E880F125FA61CF004446FF /* LaunchScreen.storyboard */; };
@@ -137,6 +139,8 @@
 		09494BBD2612557400EF0AC8 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		09494BBE2612557400EF0AC8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		09494BC02612557400EF0AC8 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		095A6263261479A30026AB86 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		095A6264261479A30026AB86 /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		0965785B26130B3600254A08 /* VenueDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDataProvider.swift; sourceTree = "<group>"; };
 		0965786026130C6C00254A08 /* VenueServiceDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueServiceDataProvider.swift; sourceTree = "<group>"; };
 		0965786526130C8200254A08 /* VenueCacheDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCacheDataProvider.swift; sourceTree = "<group>"; };
@@ -147,7 +151,7 @@
 		096578842613228C00254A08 /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		098EA153260F56DD00699F8C /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
 		098EA162260F682C00699F8C /* RealmStorageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorageContext.swift; sourceTree = "<group>"; };
-		098EA16A260F6F5900699F8C /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		098EA16A260F6F5900699F8C /* PersistStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistStrategy.swift; sourceTree = "<group>"; };
 		09E880E325FA61CE004446FF /* Balad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Balad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09E880E625FA61CE004446FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09E880EF25FA61CF004446FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 				0965785B26130B3600254A08 /* VenueDataProvider.swift */,
 				0965786026130C6C00254A08 /* VenueServiceDataProvider.swift */,
 				0965786526130C8200254A08 /* VenueCacheDataProvider.swift */,
+				095A6263261479A30026AB86 /* DetailCell.swift */,
+				095A6264261479A30026AB86 /* DetailCell.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -317,7 +323,7 @@
 				09379D1A261057A90040184F /* DetachableObject.swift */,
 				098EA153260F56DD00699F8C /* Storable.swift */,
 				098EA162260F682C00699F8C /* RealmStorageContext.swift */,
-				098EA16A260F6F5900699F8C /* File.swift */,
+				098EA16A260F6F5900699F8C /* PersistStrategy.swift */,
 			);
 			path = Persist;
 			sourceTree = "<group>";
@@ -527,6 +533,7 @@
 				0913750C2611EA380005367E /* TipCell.xib in Resources */,
 				092261D9260E4DCA00A4C345 /* AroundMeVC.xib in Resources */,
 				091375002611D6790005367E /* PhotoViewCell.xib in Resources */,
+				095A6266261479A30026AB86 /* DetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +681,7 @@
 			files = (
 				098EA154260F56DD00699F8C /* Storable.swift in Sources */,
 				09379D2E26107A150040184F /* DetailVC.swift in Sources */,
+				095A6265261479A30026AB86 /* DetailCell.swift in Sources */,
 				0965787A2613220200254A08 /* TipsResponse.swift in Sources */,
 				0965786F26131B8600254A08 /* VenueService.swift in Sources */,
 				0922619C260E3B0800A4C345 /* VenuesDataProvider.swift in Sources */,
@@ -687,7 +695,7 @@
 				0913752E2612159F0005367E /* VenueAnnotation.swift in Sources */,
 				09226121260E1DA500A4C345 /* PlacesResponse.swift in Sources */,
 				09226144260E220300A4C345 /* Response+Decodable.swift in Sources */,
-				098EA16B260F6F5900699F8C /* File.swift in Sources */,
+				098EA16B260F6F5900699F8C /* PersistStrategy.swift in Sources */,
 				09494BA82612556A00EF0AC8 /* Category.swift in Sources */,
 				0922618A260E393E00A4C345 /* Connectivity.swift in Sources */,
 				091374E52611C8460005367E /* Photos.swift in Sources */,

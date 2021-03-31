@@ -17,12 +17,12 @@ protocol V2PDetailProtocol: class {
 final class DetailPresenter: V2PDetailProtocol {
     var photos: [Photo] = [] {
         didSet {
-            self.view?.show(photos: photos)
+            view?.show(photos: photos)
         }
     }
     var tips: [Comment] = [] {
         didSet {
-            self.view?.show(tips: tips)
+            view?.show(tips: tips)
         }
     }
     weak var view: P2VDetailProtocol?
@@ -31,6 +31,7 @@ final class DetailPresenter: V2PDetailProtocol {
 
     func show(item: Venue) {
         view?.show(item: item)
+        view?.startLoading()
         interactor?.photos(id: item.id)
         interactor?.tips(id: item.id)
     }
@@ -38,10 +39,12 @@ final class DetailPresenter: V2PDetailProtocol {
 
 extension DetailPresenter: I2PDetailProtocol {
     func fetched(error: Error) {
-        self.view?.show(error: error)
+        view?.stopLoading()
+        view?.show(error: error)
     }
 
     func fetched(photos: [Photo]) {
+        view?.stopLoading()
         self.photos = photos
     }
 

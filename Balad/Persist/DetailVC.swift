@@ -12,6 +12,8 @@ protocol P2VDetailProtocol: class {
     func show(tips: [Comment])
     func show(item: Venue)
     func show(error: Error)
+    func startLoading()
+    func stopLoading()
 }
 
 final class DetailVC: UIViewController {
@@ -19,6 +21,7 @@ final class DetailVC: UIViewController {
     private(set) var item: Venue!
     private let photosReuseIdentifier = "\(PhotoViewCell.self)"
     private let tipsReuseIdentifier = "\(TipCell.self)"
+    private let detailReuseIdentifier = "\(DetailCell.self)"
     private let sectionInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
     var presenter: V2PDetailProtocol?
 
@@ -36,19 +39,14 @@ final class DetailVC: UIViewController {
             pageControl.hidesForSinglePage = true
         }
     }
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblRating: UILabel!
-    @IBOutlet weak var lblAddress: UILabel!
-    @IBOutlet weak var lblDistance: UILabel!
-    @IBOutlet weak var lblPhone: UILabel!
-    @IBOutlet weak var lblHours: UILabel!
-    @IBOutlet weak var lblChechInCount: UILabel!
-    @IBOutlet weak var lblTipCount: UILabel!
-    @IBOutlet weak var lblUserCount: UILabel!
+
     @IBOutlet weak var tipsTableView: UITableView! {
         didSet {
             tipsTableView.register(UINib(nibName: tipsReuseIdentifier, bundle: nil), forCellReuseIdentifier: tipsReuseIdentifier)
+            tipsTableView.register(UINib(nibName: detailReuseIdentifier, bundle: nil), forCellReuseIdentifier: detailReuseIdentifier)
             tipsTableView.dataSource = self
+            tipsTableView.rowHeight = UITableView.automaticDimension
+            tipsTableView.estimatedRowHeight = UITableView.automaticDimension
         }
     }
     deinit {
@@ -75,21 +73,39 @@ extension DetailVC {
 
 extension DetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.presenter?.tips.count ?? 0
+        return (section == 0) ? 1 : self.presenter?.tips.count ?? 0
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tipsReuseIdentifier, for: indexPath) as? TipCell
-        cell?.configCell(tip: self.presenter!.tips[indexPath.row])
-        return cell ?? UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: tipsReuseIdentifier)
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: tipsReuseIdentifier)
+        switch indexPath.section {
+        case 0:
+            let detailCell = tableView.dequeueReusableCell(withIdentifier: detailReuseIdentifier, for: indexPath) as? DetailCell
+            detailCell?.configCell(item: self.item)
+            return detailCell ?? cell
+        case 1:
+            let tipCell = tableView.dequeueReusableCell(withIdentifier: tipsReuseIdentifier, for: indexPath) as? TipCell
+            tipCell?.configCell(tip: self.presenter!.tips[indexPath.row])
+            return tipCell ?? cell
+        default :
+            return cell
+        }
     }
 }
 
 extension DetailVC: P2VDetailProtocol {
+    func startLoading() {
+        self.view.lock()
+    }
+
+    func stopLoading() {
+        self.view.unlock()
+    }
+
     func show(photos: [Photo]) {
         self.galleryCollectionView.reloadData()
         self.pageControl.currentPage = 0
@@ -101,15 +117,7 @@ extension DetailVC: P2VDetailProtocol {
     }
 
     func show(item: Venue) {
-        lblName.text = item.name
-        lblRating.text = "\(item.rating)"
-        lblAddress.text = item.location?.formattedAddress.joined(separator: ",")
-        lblDistance.text = "\(item.location?.distance ?? 0)"
-        lblPhone.text = "\(item.contact?.formattedPhone ?? "-")"
-        lblHours.text = "\(item.hours?.isOpen ?? false ? "is open" : "is closed" )"
-        lblTipCount.text = "\(item.stats?.tipCount ?? 0)"
-        lblChechInCount.text = "\(item.stats?.checkinsCount ?? 0)"
-        lblUserCount.text = "\(item.stats?.usersCount ?? 0)"
+        self.tipsTableView.reloadSections(IndexSet(integer: 0), with: UITableView.RowAnimation.fade)
     }
 
     func show(error: Error) {

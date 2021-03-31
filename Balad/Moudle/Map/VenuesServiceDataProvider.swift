@@ -8,6 +8,9 @@
 import Foundation
 
 final class VenuesServiceDataProvider: VenuesDataProvider {
+    deinit {
+        print("Deinit was called :\(VenuesServiceDataProvider.self)")
+    }
     weak var delegate: DataProviderDelegate?
     private let service = VenuesService()
     private lazy var cacheDataProvider: VenuesCacheDataProvider = {
@@ -19,16 +22,20 @@ final class VenuesServiceDataProvider: VenuesDataProvider {
     }
 
     func fetch(lat: Double, long: Double) {
-        self.cacheDataProvider.fetch(lat: lat, long: long)
-        service.explore(lat: lat, long: long, success: { [weak self] (place) in
-            guard let strongSelf = self else { return }
-            let places = place.data?.groups.reduce([Item](), { $0 + ($1.items)}) ?? []
-            strongSelf.cacheDataProvider.save(items: Array(places.map({$0.venue!.detached()})))
-            strongSelf.cacheDataProvider.fetch(lat: lat, long: long)
-        }, failure: { [weak self](error) in
-            guard let strongSelf = self else { return }
-            strongSelf.delegate?.failedFetchBy(error: error)
+        if Connectivity.isConnectedToInternet() {
+            service.explore(lat: lat, long: long, success: { [weak self] (place) in
+                guard let strongSelf = self else { return }
+                let places = place.data?.groups.reduce([Item](), { $0 + ($1.items)}) ?? []
+                strongSelf.cacheDataProvider.save(items: Array(places.map({$0.venue!.detached()})))
+                strongSelf.cacheDataProvider.fetch(lat: lat, long: long)
+            }, failure: { [weak self](error) in
+                guard let strongSelf = self else { return }
+                strongSelf.delegate?.failedFetchBy(error: error)
 
-        })
+            })
+        } else {
+            self.cacheDataProvider.fetch(lat: lat, long: long)
+        }
+
     }
 }

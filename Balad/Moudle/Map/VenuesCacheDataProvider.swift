@@ -9,6 +9,9 @@ import Foundation
 import CoreLocation
 
 final class VenuesCacheDataProvider: VenuesDataProvider {
+    deinit {
+        print("Deinit was called :\(VenuesCacheDataProvider.self)")
+    }
     weak var delegate: DataProviderDelegate?
     private lazy var contextPersist: ContextPersist = {
         let tmp = ContextPersist(strategy: DbPersist())
@@ -21,7 +24,7 @@ final class VenuesCacheDataProvider: VenuesDataProvider {
 
     func fetch(lat: Double, long: Double) {
         let userLocation = CLLocation(latitude: lat, longitude: long)
-        self.contextPersist.retrive { [weak self] (items: [Venue]) in
+        self.contextPersist.retrive(Venue.self) { [weak self] (items: [Venue]) in
             guard let strongSelf = self else { return }
             let filteredItems = items.filter { (item) -> Bool in
                 let venueLocation = CLLocation(latitude: item.location?.lat ?? 0.0,

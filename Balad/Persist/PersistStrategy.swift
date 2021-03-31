@@ -12,6 +12,7 @@ protocol PersistStrategy {
     mutating func retrive<T: Storable>(_ model: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: (([T]) -> Void))
 }
 struct FilePersist: PersistStrategy {
+
     mutating func save<T>(objects: [T]) throws where T: Storable {
 
     }

@@ -34,12 +34,14 @@ final class PhotoViewCell: UICollectionViewCell {
         self.downloadProgerssBar.isHidden = false
         KF.url(URL(string: photo.prefix +  PhotoQulities.original.value() + photo.suffix ))
             .loadDiskFileSynchronously()
+            .placeholder(#imageLiteral(resourceName: "ImagePlaceHolder"))
             .diskCacheExpiration(StorageExpiration.days(3))
             .fade(duration: 0.25).onSuccess({[weak self] (result) in
                 self?.downloadProgerssBar.isHidden = true
                 let image = result.image
                 ImageCache.default.store(image, forKey: result.source.cacheKey)
             }).onFailure({ (error) in
+                self.downloadProgerssBar.isHidden = true
                 print("Download Failed by Error ::\(error)")
             }).onProgress({ [weak self](receivedSize, totalSize) in
                 guard let strongSelf = self else { return }

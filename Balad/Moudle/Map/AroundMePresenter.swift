@@ -14,6 +14,9 @@ protocol V2PAroundMeProtocol: class {
     func showDetail(item: Venue)
 }
 final class AroundMePresenter: V2PAroundMeProtocol {
+    deinit {
+        print("Deinit was called :\(AroundMePresenter.self)")
+    }
     weak var view: P2VAroundMeProtocol?
     var interactor: P2IAroundMeProtocol?
     var router: P2RAroundMeProtocol?
