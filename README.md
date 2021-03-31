@@ -50,15 +50,15 @@ $ pod install
 ```
 # Viper Desin pattern
 Viper is a design pattern that implements ‘separation of concern’ paradigm. Mostly like MVP or MVC it follows a modular approach. One feature, one module. For each module VIPER has five different classes with distinct roles. No class go beyond its sole purpose. These classes are following.
-### View:
+- ### View:
 Class that has all the code to show the app interface to the user and get their responses. Upon receiving a response View alerts the Presenter.
-### Presenter:
+- ### Presenter:
 Nucleus of a module. It gets user response from the View and work accordingly. Only class to communicate with all the other components. Calls the router for wire-framing, Interactor to fetch data (network calls or local data calls), view to update the UI.
-### Interactor:
+- ### Interactor:
 Has the business logics of an app. e.g if business logic depend on making network calls then it is Interactor’s responsibility to do so.
-### Router: 
+- ### Router: 
  Does the wire-framing. Listens from the presenter about which screen to present and executes that.
-###  Entity: 
+- ###  Entity: 
  Contains plain model classes used by the Interactor.
 ## Below shows a simple diagram of VIPER
 [![](https://miro.medium.com/max/1400/1*-Mfew6qvLQ-t-DSOkY23Aw.png)](https://miro.medium.com/max/1400/1*-Mfew6qvLQ-t-DSOkY23Aw.png)
@@ -70,9 +70,16 @@ Has the business logics of an app. e.g if business logic depend on making networ
 - [Persist](https://github.com/realm/realm-cocoa)
 - [Image caching](https://github.com/onevcat/Kingfisher)
 - [Auto layout](https://github.com/SnapKit/SnapKit)
-- [Viper] (https://medium.com/@smalam119/viper-design-pattern-for-ios-application-development-7a9703902af6)
+- [Viper] 
 ## Credits
 
 - Mozhgan Jelodar ([@Mozhganii](https://twitter.com/Mozhganii))
+
+#### App Demo
+<img src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.25.10.png" alt="" />
+<img src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.25.18.png" alt="" />
+<img src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.29.45.png" alt="" />
+<img src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.29.51.png" alt="" />
+
 
 
