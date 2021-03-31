@@ -52,6 +52,7 @@
 		09494BCA2612557400EF0AC8 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09494BC02612557400EF0AC8 /* Venue.swift */; };
 		095A6265261479A30026AB86 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095A6263261479A30026AB86 /* DetailCell.swift */; };
 		095A6266261479A30026AB86 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 095A6264261479A30026AB86 /* DetailCell.xib */; };
+		095A628326148C700026AB86 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 095A628226148C700026AB86 /* README.md */; };
 		0965785C26130B3600254A08 /* VenueDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965785B26130B3600254A08 /* VenueDataProvider.swift */; };
 		0965786126130C6C00254A08 /* VenueServiceDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965786026130C6C00254A08 /* VenueServiceDataProvider.swift */; };
 		0965786626130C8200254A08 /* VenueCacheDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965786526130C8200254A08 /* VenueCacheDataProvider.swift */; };
@@ -141,6 +142,7 @@
 		09494BC02612557400EF0AC8 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		095A6263261479A30026AB86 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		095A6264261479A30026AB86 /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
+		095A628226148C700026AB86 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0965785B26130B3600254A08 /* VenueDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDataProvider.swift; sourceTree = "<group>"; };
 		0965786026130C6C00254A08 /* VenueServiceDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueServiceDataProvider.swift; sourceTree = "<group>"; };
 		0965786526130C8200254A08 /* VenueCacheDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCacheDataProvider.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 		09E880DA25FA61CE004446FF = {
 			isa = PBXGroup;
 			children = (
+				095A628226148C700026AB86 /* README.md */,
 				0922616C260E2EC200A4C345 /* Location.gpx */,
 				09E880E525FA61CE004446FF /* Balad */,
 				09E8816E25FA696C004446FF /* BaladUITests */,
@@ -527,6 +530,7 @@
 			files = (
 				092261CC260E495100A4C345 /* Localizable.strings in Resources */,
 				09E880F325FA61CF004446FF /* LaunchScreen.storyboard in Resources */,
+				095A628326148C700026AB86 /* README.md in Resources */,
 				09E880F025FA61CF004446FF /* Assets.xcassets in Resources */,
 				09379D2F26107A150040184F /* DetailVC.xib in Resources */,
 				0922616D260E2EC200A4C345 /* Location.gpx in Resources */,
@@ -839,7 +843,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -895,7 +899,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
