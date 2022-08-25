@@ -76,7 +76,7 @@ Has the business logics of an app. e.g if business logic depend on making networ
 - Mozhgan Jelodar ([@Mozhganii](https://twitter.com/Mozhganii))
 
 #### App Demo
-<img width = "200" height = "350" src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.25.10.png" alt="" />
+<img width = "200" height = "400" src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.25.10.png" alt="" />
 <img src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.25.18.png" alt="" />
 <img src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.29.45.png" alt="" />
 <img src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.29.51.png" alt="" />
