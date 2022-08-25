@@ -78,20 +78,15 @@ Has the business logics of an app. e.g if business logic depend on making networ
 #### App Demo
 <table>
  <tr>
-  <td>
-   <img width = "205" height = "448" src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.25.10.png" alt="" />
+   <td>
+   <img width = "205" height = "448" src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.29.45.png" alt="" />
   </td>
   <td>
    <img width = "205" height = "448" src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.25.18.png" alt="" />
   </td>
   <td>
-   <img width = "205" height = "448" src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.29.45.png" alt="" />
-  </td>
-  <td>
    <img width = "205" height = "448" src="https://github.com/mozhgan/NearMe/blob/develop/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202021-03-31%20at%2016.29.51.png" alt="" />
   </td>
-  
-  
  </tr>
 </table>
 
